@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Concessionária</title>
+</head>
+
+<body>
+    <h2>Tela de login da Amorim's <span style="color: blue;">Auto</span> <span style="color:yellow;">Cars</span></h2>
+    <div id="geral">
+        Digite o nome de Usuário: <input type="text" placeholder="Usuário" id="in_usuario"><br>
+        <br>
+        Digite sua senha: <input type="text" placeholder="Senha" id="in_senha"><br>
+        <br>
+        Perfil:
+        <select name="" id="in_perfil">
+            <option value=""></option>
+            <option value="dono">Dono</option>
+            <option value="chefe de vendas">Chefe de vendas</option>
+            <option value="corretor">Corretor</option>
+        </select>
+        <br>
+        <br>
+
+        <button onclick="entrar()">Entrar</button>
+        <button onclick="limpar()">Limpar</button><br>
+        <br>
+        <div style="color: royalblue;" id="div_login"></div>
+        <img id="user" src="" alt="" style="width: 300px;">
+       
+    </div>
+    <b id="falha" style="color: red;"></b>
+
+</body>
+
+</html>
+
+<script>
+    var tentativas = 3;
+
+    function limpar() {
+        in_usuario.value = "";
+        in_senha.value = "";
+        in_perfil.value = "";
+        user.src = "";
+        falha.innerHTML = "";
+        div_login.innerHTML = "";
+    }
+    function entrar() {
+        falha.innerHTML = "";
+        var usuario = in_usuario.value
+        var senha = in_senha.value
+        var perfil = in_perfil.value
+        if (usuario == "Joao" && senha == "070202" && perfil == "dono") {
+            div_login.innerHTML = `Bem vindo <b>${usuario}</b>, você entrou com o perfil de <b>${perfil}</b>`;
+            user.src = "dono-concessionaria.jpg";
+            tentativas = 3
+        }
+        else if (usuario == "Carlos" && senha == "030620" && perfil == "chefe de vendas") {
+            div_login.innerHTML = `Bem vindo <b>${usuario}</b>, você entrou com o perfil de <b>${perfil}</b>`;
+            user.src = "chefe-vendas.jpg";
+            tentativas = 3
+        }
+        else if (usuario == "Steve" && senha == "230502" && perfil == "corretor") {
+            div_login.innerHTML = `Bem vindo <b>${usuario}</b>, você entrou com o perfil de <b>${perfil}</b>`;
+            user.src = "corretor-conc.jpg";
+            tentativas = 3
+        }
+        else {
+           falha.innerHTML = `Falha de autenticação! você tem mais <u>${tentativas -= 1}</u> tentativas!`;
+           div_login.innerHTML = "";
+           user.src = "";
+        }
+        if (tentativas == 0) {
+            geral.innerHTML = "Acesso bloqueado! entre em contato com o suporte!"
+            falha.innerHTML = "";
+        }
+    }
+</script>
+
